@@ -9,7 +9,10 @@
 </head>
 <body>
     <div class="main">
-        Hello World!
+        <header style="display: flex;">
+            <h1>My Library</h1>
+            <button id = "AddBooks">+</button>
+        </header>
         <div class="container">
             <div>
                 <p>Title: "The Hobbit" </p>
@@ -17,8 +20,17 @@
                 <p>Pages: 295</p>
                 <p>Status: Read</p>
             </div>
-          </div>
+        </div>
     </div>
+
+    <div class="form" id="form" style="background-color: lightblue;">
+        <form>
+            <label for="Title">Title:</label>
+            <input type="text" name="Title" id="Title">
+        </form>
+    </div>
+    <div class="overlay" id="overlay"></div>
+    
     <script src="scripts.js"></script>
 </body>
 </html>

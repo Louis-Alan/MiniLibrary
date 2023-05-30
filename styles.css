@@ -1,3 +1,13 @@
+.main{
+    width: 80%;
+    margin: auto;
+}
+
+header{
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
 .overlay {
     position: fixed;
     top: 0;
@@ -21,12 +31,14 @@
     width: 40px;
     position: fixed;
     top: 20px;
-    right: 20px;
+    right: 20%;
 }
 
 .container div{
     background: linear-gradient(135deg, rgba(47, 137, 182, 0.8) 0%, rgba(59, 214, 121, 0.8) 100%);
     border: 2px dotted darkorchid;
+    font-size: 20px;
+    padding: 10px;
 }
 
 .container {
@@ -38,4 +50,36 @@
 
 div p{
     margin: 2px;
+}
+
+.formCont{
+    padding: 20px;
+    background-color: beige;
+    width: 300px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    width: 300px;
+    z-index: 1;
+    border: 2px dashed red;
+    border-radius: 15px;
+    text-align: center;
+    transform: translate(-50%, -50%) scale(0);
+    transition: 0.2s ease-in-out;
+}
+
+.formCont.active{
+    transform: translate(-50%, -50%) scale(1);
+}
+
+input{
+    padding: 10px;
+    border-radius: 20px;
+    border: none;
+    font-size: 20px;
+}
+
+.submit{
+    background-color: lightcoral;
+    border-radius: 5px;
 }

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,11 +8,12 @@
     <title>Mini Library</title>
     <link rel="stylesheet" href="styles.css">
 </head>
+
 <body>
     <div class="main">
         <header style="display: flex;">
             <h1>My Library</h1>
-            <button id = "AddBooks">+</button>
+            <button id="AddBooks">+</button>
         </header>
         <div class="container">
             <div>
@@ -23,14 +25,22 @@
         </div>
     </div>
 
-    <div class="form" id="form" style="background-color: lightblue;">
-        <form>
-            <label for="Title">Title:</label>
-            <input type="text" name="Title" id="Title">
+    <div class="formCont" id="formCont">
+        <form style="text-align: center; padding: 5px; display: flex; flex-direction: column; gap: 20px;">
+            <h3>Add New Book</h3>
+            <input type="text" name="Title" id="Title" placeholder="Title" required>
+            <input type="text" name="Author" id="Author" placeholder="Author" required>
+            <input type="number" name="Pages" id="Pages" placeholder="Pages" max="3000">
+            <div>
+            <label for="checkbox" style="font-size: 20px;">Hace you read it?</label>
+            <input type="checkbox" name="Read" id="Read">
+            </div>
+            <input type="submit" class="submit" value="Add Book">
         </form>
     </div>
     <div class="overlay" id="overlay"></div>
-    
+
     <script src="scripts.js"></script>
 </body>
+
 </html>

@@ -2,13 +2,14 @@ let myLib = [];
 let count = 0;
 let cont = document.getElementsByClassName("container");
 let btn = document.getElementById("AddBooks")
+let over = document.getElementById("overlay");
+let formCont = document.getElementById("formCont")
 
 console.log(btn);
 
 btn.addEventListener("click", () =>{
-    console.log("hello")
-    let over = document.getElementById("overlay");
     over.classList.add("active")
+    formCont.classList.add("active")
 })
 
 function book(title, author, pages, status) {
@@ -36,15 +37,12 @@ function addBookToLibrary(newbook) {
 }
 addBookToLibrary(b)
 
-const specifiedElement = document.getElementById('form')
-
 // I'm using "click" but it works with any event
 document.addEventListener('click', event => {
-  const isClickInside = specifiedElement.contains(event.target)
-
+  const isClickInside = formCont.contains(event.target) || btn.contains(event.target)
   if (!isClickInside) {
-    let over = document.getElementById("overlay");
-    over.classList.add("active")
+    over.classList.remove("active")
+    formCont.classList.remove("active")
     let m = document.getElementById("Title").value;
     console.log(m)
     // The click was OUTSIDE the specifiedElement, do something

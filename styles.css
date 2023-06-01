@@ -39,13 +39,28 @@ header{
     border: 2px dotted darkorchid;
     font-size: 20px;
     padding: 10px;
+    grid-column: span 3;
 }
 
 .container {
     display: grid;
-    grid-template-columns: 20vw 20vw 20vw 20vw;
-    grid-auto-rows: 17vh;
-    gap: 50px;
+    grid-template-columns: repeat(12, 1fr);
+    position: relative;
+    gap: 20px;
+    /* grid-auto-rows: 17vh; */
+    /* gap: 50px; */
+  }
+
+.container div .remove-book{
+    position: absolute;
+    top: 5px;
+    right: 10px;
+}
+
+.remove-book:hover {
+    cursor: pointer;
+    color: red;
+    opacity: 1;
   }
 
 div p{
@@ -79,7 +94,7 @@ input{
     font-size: 20px;
 }
 
-.submit{
+#submit{
     background-color: lightcoral;
     border-radius: 5px;
 }

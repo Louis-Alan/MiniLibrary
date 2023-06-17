@@ -40,6 +40,7 @@ header{
     font-size: 20px;
     padding: 10px;
     grid-column: span 3;
+    position: relative;
 }
 
 .container {
@@ -52,9 +53,10 @@ header{
   }
 
 .container div .remove-book{
-    position: relative;
-    top: 5px;
-    right: 0px;
+    position: absolute;
+    top: 12px;   
+    right: 10px;
+    font-size: .9em;
 }
 
 .remove-book:hover {

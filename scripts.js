@@ -1,4 +1,4 @@
-let myLib = [{title:"The Hobbit", author:"J.R.R Tolkein",pages:295,status:"Read"}];
+let myLib = [{ title: "The Hobbit", author: "J.R.R Tolkein", pages: 295, status: "Read" }];
 let count = 0;
 let cont = document.getElementsByClassName("container");
 let btn = document.getElementById("AddBooks")
@@ -8,7 +8,7 @@ let Form = document.querySelector(".subForm")
 
 console.log(btn);
 
-btn.addEventListener("click", () =>{
+btn.addEventListener("click", () => {
     over.classList.add("active")
     formCont.classList.add("active")
 })
@@ -17,43 +17,64 @@ btn.addEventListener("click", () =>{
 document.addEventListener('click', event => {
     const isClickInside = formCont.contains(event.target) || btn.contains(event.target)
     if (!isClickInside) {
-      over.classList.remove("active")
-      formCont.classList.remove("active")
-      let m = document.getElementById("Title").value;
+        over.classList.remove("active")
+        formCont.classList.remove("active")
+        let m = document.getElementById("Title").value;
     }
 })
 
-function book(title, author, pages, status) {
-    this.title = title;
-    this.author = author;
-    this.pages = pages;
-    this.status = status;
-    this.info = function () { return (title + " by " + author + ", " + pages + " pages, " + status); }
-}
-
-function pushDocument(){
-    cont[0].innerHTML = ""
-    myLib.forEach((i) => {
-        cont[0].innerHTML += `<div> <span class="remove-book"> X </span> <p>Title: "${i.title}" </p> <p>Author: "${i.author}"</p> <p>Pages: ${i.pages}</p> <p>Status: ${i.status}</p> </div>`
-    }
-    )
-}
-
-function addBookToLibrary(newbook) {
-    myLib.push(newbook);
-    pushDocument()
-}
-// addBookToLibrary(b)
-
-Form.addEventListener("submit", (e) => {
+function pushDocument() {
+    fetch('http://192.168.0.103:8080/api/v1/Book')
+      .then(response => response.json())
+      .then(data => {
+        const books = data; // Assuming the response is assigned to a variable named 'data'
+  
+        // Clear the container first
+        cont[0].innerHTML = '';
+  
+        // Iterate through each book and create HTML elements
+        books.forEach(i => {
+          cont[0].innerHTML += `<div> <span class="remove-book"> X </span> <p>Title: "${i.title}" </p> <p>Author: "${i.author}"</p> <p>Pages: ${i.pages}</p> <p>Status: ${i.status}</p> </div>`
+        });
+      })
+      .catch(error => {
+        console.error('Error:', error);
+      });
+  }
+  
+  Form.addEventListener("submit", (e) => {
     e.preventDefault();
-    console.log("HEllo");
-    let tit = document.getElementById("Title").value;
-    let aut = document.getElementById("Author").value;
-    let pag = (document.getElementById("Pages").value);
-    let read = document.getElementById("Read").checked?"Read":"Not read yet";
-    let nb = new book(tit,aut,pag,read);
-    addBookToLibrary(nb);
+  
+    let title = document.getElementById("Title").value;
+    let author = document.getElementById("Author").value;
+    let pages = parseInt(document.getElementById("Pages").value);
+    let status = document.getElementById("Read").checked ? "Read" : "Not read yet";
+  
+    let bookData = {
+      title: title,
+      author: author,
+      pages: pages,
+      status: status
+    };
+  
+    fetch("http://192.168.0.103:8080/api/v1/Book", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(bookData)
+    })
+      .then(response => {
+        if (response.ok) {
+          console.log("Book added successfully!");
+          // Perform any additional actions after adding the book
+          pushDocument(); // Reread the JSON file to get updated details
+        } else {
+          console.error("Error:", response.statusText);
+        }
+      })
+      .catch(error => console.error("Error:", error));
+  
     Form.reset();
   });
 

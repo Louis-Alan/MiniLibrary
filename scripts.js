@@ -48,7 +48,7 @@ function pushDocument() {
     let title = document.getElementById("Title").value;
     let author = document.getElementById("Author").value;
     let pages = parseInt(document.getElementById("Pages").value);
-    let status = document.getElementById("Read").checked ? "Read" : "Not read yet";
+    let status = document.getElementById("Read").checked ? "Read" : "Unread";
   
     let bookData = {
       title: title,

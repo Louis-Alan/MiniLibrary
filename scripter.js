@@ -1,7 +1,7 @@
 let cont = document.getElementsByClassName("container");
 
 function displayBooks() {
-    fetch('http://localhost:8080/api/v1/Book')
+    fetch('http://192.168.0.103:8080/api/v1/Book')
         .then(response => response.json())
         .then(data => {
             const books = data; // Assuming the response is assigned to a variable named 'data'

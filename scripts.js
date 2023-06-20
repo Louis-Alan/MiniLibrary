@@ -5,7 +5,7 @@ let btn = document.getElementById("AddBooks")
 let over = document.getElementById("overlay");
 let formCont = document.getElementById("formCont")
 let Form = document.querySelector(".subForm")
-let spanEle = document.getElementsByClassName("remove-book")
+let spanElements = document.getElementsByClassName("remove-book")
 
 console.log(btn);
 
@@ -37,6 +37,7 @@ function pushDocument() {
         books.forEach(i => {
           cont[0].innerHTML += `<div> <span class="remove-book"> X </span> <p>Title: "${i.title}" </p> <p>Author: "${i.author}"</p> <p>Pages: ${i.pages}</p> <p>Status: ${i.status}</p> </div>`
         });
+        spanCheck();
       })
       .catch(error => {
         console.error('Error:', error);
@@ -79,22 +80,21 @@ function pushDocument() {
     Form.reset();
   });
 
-pushDocument()
+function spanCheck(){
+    for (let i = 0; i < spanElements.length; i++) {
 
-let spanElements = document.getElementsByClassName("remove-book");
-
-for (let i = 0; i < spanElements.length; i++) {
-
-    spanElements[i].addEventListener('click', function(event) {
-    let parentDiv = event.target.parentNode;
-
-    let titleElement = parentDiv.querySelector("p:first-of-type");
-    if (titleElement) {
-      let title = titleElement.textContent.replace("Title: ", "");
-      console.log("Span element clicked");
-      console.log("Title:", title);
-    } else {
-      console.log("Title element not found.");
+        spanElements[i].addEventListener('click', function(event) {
+        let parentDiv = event.target.parentNode;
+        console.log("HEllo");
+        let titleElement = parentDiv.querySelector("p:first-of-type");
+        if (titleElement) {
+        let title = titleElement.textContent.replace("Title: ", "");
+        console.log("Span element clicked");
+        console.log("Title:", title);
+        } else {
+        console.log("Title element not found.");
+        }
+    });
     }
-  });
 }
+pushDocument()
